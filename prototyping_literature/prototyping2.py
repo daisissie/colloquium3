@@ -19,6 +19,8 @@ from LAC import LAC
 from geopy.geocoders import Nominatim
 import folium
 
+file_path = "/Users/daiyu/Documents/github_mac/colloquium3/prototyping_literature/data/呼兰河传-萧红.epub"
+
 def extract_epub_text(file_path):
     """
     Extracts and concatenates text from all document items in the EPUB.
