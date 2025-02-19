@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedded Map</title>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js'></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="fixed-header">
+        <ul class="toc">
+            
+            <h1><a href="index.html" style="color: rgb(0, 0, 0); text-decoration: none;">Memory Tides</a></h1>
+            <h1></h1><a href="about.html">About</a></h1>
+
+        </ul>
+    </header>
+
+    <div class="interface_container">
+        <div class="data-input">
+          <h2>Data Input</h2>
+          <!-- Add your input elements here -->
+          <label for="location">Text:</label>
+          <input file="text" id="location" name="location" placeholder="Enter location">
+          <br>
+          <button type="submit">Show</button>
+        </div>
+
+        
+        <div class="map-section">
+          <div id="map"></div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
