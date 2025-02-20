@@ -3,26 +3,55 @@ mapboxgl.accessToken = 'pk.eyJ1IjoieWRhaTExMTIiLCJhIjoiY2x6ajE1bTRwMG4yZzJxcThle
 const map = new mapboxgl.Map({
     container: 'map', // id of the element where the map will be injected
     style: 'mapbox://styles/mapbox/streets-v11',
-    zoom: 8
+    center: [0, 0], // Set initial center coordinates
+    zoom: 2 // Set initial zoom level
 });
 
-// Add a marker at the specified coordinates
-new mapboxgl.Marker()
-    .setLngLat([150.644, -34.397])
-    .setPopup(new mapboxgl.Popup().setText('Lat: -34.397, Lng: 150.644'))
-    .addTo(map);
+// Load and display GeoJSON data
+map.on('load', function () {
+    fetch('process/walden_locations.geojson')
+        .then(response => response.json())
+        .then(data => {
+            map.addSource('walden_locations', {
+                type: 'geojson',
+                data: data
+            });
 
-new mapboxgl.Marker()
-    .setLngLat([151.2093, -33.8688]) // Sydney coordinates
-    .setPopup(new mapboxgl.Popup().setText('Lat: -33.8688, Lng: 151.2093'))
-    .addTo(map);
+            map.addLayer({
+                id: 'walden_locations',
+                type: 'circle',
+                source: 'walden_locations',
+                paint: {
+                    'circle-radius': 6,
+                    'circle-color': '#B42222'
+                }
+            });
 
-new mapboxgl.Marker()
-    .setLngLat([144.9631, -37.8136]) // Melbourne coordinates
-    .setPopup(new mapboxgl.Popup().setText('Lat: -37.8136, Lng: 144.9631'))
-    .addTo(map);
+            map.addLayer({
+                id: 'walden_locations_labels',
+                type: 'symbol',
+                source: 'walden_locations',
+                layout: {
+                    'text-field': ['get', 'Location'],
+                    'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
+                    'text-offset': [0, 0.6],
+                    'text-anchor': 'top'
+                }
+            });
 
-new mapboxgl.Marker()
-    .setLngLat([153.0281, -27.4679]) // Brisbane coordinates
-    .setPopup(new mapboxgl.Popup().setText('Lat: -27.4679, Lng: 153.0281'))
-    .addTo(map);
+            // Add popups with location information
+            data.features.forEach(function (feature) {
+                const coordinates = feature.geometry.coordinates.slice();
+                const name = feature.properties.name;
+                const context = feature.properties.context; // new: get context
+
+                new mapboxgl.Marker()
+                    .setLngLat(coordinates)
+                    .setPopup(
+                        new mapboxgl.Popup().setHTML(`<h3>${name}</h3><p>${context}</p>`)
+                    )
+                    .addTo(map);
+            });
+        })
+        .catch(error => console.error('Error loading GeoJSON data:', error));
+});
