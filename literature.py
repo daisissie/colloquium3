@@ -8,6 +8,8 @@ import json
 import folium
 import time
 import os
+import subprocess  # Using subprocess to call Calibre's ebook-convert
+from striprtf.striprtf import rtf_to_text
 
 # ---------------------------
 # 1. Text Extraction Functions
@@ -15,15 +17,19 @@ import os
 
 def extract_text(file_path):
     """
-    Extracts text from an EPUB or TXT file based on its extension.
+    Extracts text from an EPUB, MOBI, TXT, or RTF file based on its extension.
     """
     if file_path.lower().endswith('.epub'):
         return extract_text_from_epub(file_path)
+    elif file_path.lower().endswith('.mobi'):
+        return extract_text_from_mobi(file_path)
     elif file_path.lower().endswith('.txt'):
         with open(file_path, 'r', encoding='utf-8') as f:
             return f.read()
+    elif file_path.lower().endswith('.rtf'):
+        return extract_text_from_rtf(file_path)
     else:
-        raise ValueError("Unsupported file format. Please provide a .epub or .txt file.")
+        raise ValueError("Unsupported file format. Please provide a .epub, .mobi, .txt, or .rtf file.")
 
 def extract_text_from_epub(file_path):
     """
@@ -36,6 +42,32 @@ def extract_text_from_epub(file_path):
             soup = BeautifulSoup(item.get_body_content(), 'html.parser')
             text.append(soup.get_text())
     return '\n'.join(text)
+
+def convert_mobi_to_epub(input_path, output_path):
+    """
+    Converts a MOBI file to EPUB format using the ebook-convert command.
+    Ensure that Calibre's ebook-convert is installed and accessible from the PATH.
+    """
+    command = ['ebook-convert', input_path, output_path]
+    subprocess.run(command, check=True)
+
+def extract_text_from_mobi(file_path):
+    """
+    Extracts text content from a MOBI file by converting it to EPUB and then using extract_text_from_epub.
+    """
+    temp_epub = "temp_converted.epub"
+    convert_mobi_to_epub(file_path, temp_epub)
+    text = extract_text_from_epub(temp_epub)
+    os.remove(temp_epub)  # Clean up the temporary EPUB file
+    return text
+
+def extract_text_from_rtf(file_path):
+    """
+    Reads an RTF file and extracts its text content.
+    """
+    with open(file_path, 'r', encoding='utf-8') as f:
+        rtf_content = f.read()
+    return rtf_to_text(rtf_content)
 
 # ---------------------------
 # 2. Setup NLP and Geocoder
@@ -54,19 +86,22 @@ def get_geocode(location):
     """
     try:
         loc = geolocator.geocode(location)
-        time.sleep(1)  # pause to avoid rate limits
+        time.sleep(1)  # Pause to avoid rate limits
         return loc
     except Exception as e:
         print(f"Error geocoding {location}: {e}")
         return None
 
 def is_city(loc):
+    """
+    Checks if the geocoded location is of an acceptable type.
+    Adjust this function if needed.
+    """
     if loc:
-        # Accept if type is one of a broader set, or simply return True if loc exists.
         loc_type = loc.raw.get('type', '')
         if loc_type in ['city', 'town', 'village', 'hamlet', 'locality']:
             return True
-        # Or remove the check altogether:
+        # For now, accept all geocoded results.
         return True
     return False
 
@@ -83,19 +118,19 @@ def get_context(text, start_char, end_char, window=50):
 # ---------------------------
 
 # Specify your input file path (change as needed)
-file_path = '/Users/daiyu/Documents/github_mac/colloquium3/prototyping_literature/data/henry-david-thoreau_walden.epub'
+file_path = '/Users/daiyu/Documents/github_mac/colloquium3/prototying_tuvalu/data/Tuvalu1.rtf'
 extracted_text = extract_text(file_path)
 
-# Process the text using spaCy
+# Process the text using spaCy to extract entities
 doc = nlp(extracted_text)
 
-# Extract GPE entities along with their character offsets
+# Extract GPE (Geopolitical Entity) entities along with their character offsets
 locations_info = []
 for ent in doc.ents:
     if ent.label_ == "GPE":
         locations_info.append((ent.text, ent.start_char, ent.end_char))
 
-# Remove duplicates while keeping the first occurrence for context extraction
+# Remove duplicate locations while keeping the first occurrence for context extraction
 unique_locations = {}
 for loc_text, start_char, end_char in locations_info:
     if loc_text not in unique_locations:
@@ -112,7 +147,6 @@ with open(output_csv_file, mode='w', newline='', encoding='utf-8') as csvfile:
     
     for location, (start_char, end_char) in unique_locations.items():
         loc = get_geocode(location)
-        # Check if geocoding was successful and if the result is a city-like entity
         if loc and is_city(loc):
             context = get_context(extracted_text, start_char, end_char)
             csvwriter.writerow([location, loc.latitude, loc.longitude, context])
