@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_e3c186a4a3e16f84a9b6cb1c16d3cbad {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_e3c186a4a3e16f84a9b6cb1c16d3cbad" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_e3c186a4a3e16f84a9b6cb1c16d3cbad = L.map(
+                "map_e3c186a4a3e16f84a9b6cb1c16d3cbad",
+                {
+                    center: [0.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 2,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a33ae9ecca0ae3ebdbe568369a8eb3b4 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_a33ae9ecca0ae3ebdbe568369a8eb3b4.addTo(map_e3c186a4a3e16f84a9b6cb1c16d3cbad);
+        
+    
+            var marker_d42fe700dcc62ccc7d007db2c4abfeea = L.marker(
+                [41.903411, 12.4528527],
+                {
+}
+            ).addTo(map_e3c186a4a3e16f84a9b6cb1c16d3cbad);
+        
+    
+        var popup_ba65ef2ed39d8ae55a005619bceb0d06 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a90abb6f6678324c0d27611c2773ad95 = $(`<div id="html_a90abb6f6678324c0d27611c2773ad95" style="width: 100.0%; height: 100.0%;">Vatican City: The number of messages I’ve sent about this place –the third least populous nation on Earth after Vatican City and Nauru – over the past year is probably nearing the 50 mark.</div>`)[0];
+                popup_ba65ef2ed39d8ae55a005619bceb0d06.setContent(html_a90abb6f6678324c0d27611c2773ad95);
+            
+        
+
+        marker_d42fe700dcc62ccc7d007db2c4abfeea.bindPopup(popup_ba65ef2ed39d8ae55a005619bceb0d06)
+        ;
+
+        
+    
+    
+            var marker_0649aff4c850c17ddb48c17ab707540f = L.marker(
+                [-0.5252306, 166.9324426],
+                {
+}
+            ).addTo(map_e3c186a4a3e16f84a9b6cb1c16d3cbad);
+        
+    
+        var popup_362347f31e8988a1b0443e4cbce4388d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f5fb35bd3f9079b5b95f5532b82579e7 = $(`<div id="html_f5fb35bd3f9079b5b95f5532b82579e7" style="width: 100.0%; height: 100.0%;">Nauru: The number of messages I’ve sent about this place –the third least populous nation on Earth after Vatican City and Nauru – over the past year is probably nearing the 50 mark.</div>`)[0];
+                popup_362347f31e8988a1b0443e4cbce4388d.setContent(html_f5fb35bd3f9079b5b95f5532b82579e7);
+            
+        
+
+        marker_0649aff4c850c17ddb48c17ab707540f.bindPopup(popup_362347f31e8988a1b0443e4cbce4388d)
+        ;
+
+        
+    
+    
+            var marker_6674a1e64945d4055a2d21823b5ec582 = L.marker(
+                [-41.5000831, 172.8344077],
+                {
+}
+            ).addTo(map_e3c186a4a3e16f84a9b6cb1c16d3cbad);
+        
+    
+        var popup_d74be1488fc34bb332d4b70c2c7d69f7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a8d36b058d957b06bee198c1495e4449 = $(`<div id="html_a8d36b058d957b06bee198c1495e4449" style="width: 100.0%; height: 100.0%;">New Zealand: Though based in New Zealand, McQuarrie is married to a Tuvaluan and has connections with the Tuvaluan community in Auckland.</div>`)[0];
+                popup_d74be1488fc34bb332d4b70c2c7d69f7.setContent(html_a8d36b058d957b06bee198c1495e4449);
+            
+        
+
+        marker_6674a1e64945d4055a2d21823b5ec582.bindPopup(popup_d74be1488fc34bb332d4b70c2c7d69f7)
+        ;
+
+        
+    
+    
+            var marker_a39eb3ba8fcd4930c583ee5d3f8a7c8a = L.marker(
+                [-36.852095, 174.7631803],
+                {
+}
+            ).addTo(map_e3c186a4a3e16f84a9b6cb1c16d3cbad);
+        
+    
+        var popup_5512c0850df9f7763288cafd99069bc7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_546c9c538aec49bc69fe01a400a1b0c4 = $(`<div id="html_546c9c538aec49bc69fe01a400a1b0c4" style="width: 100.0%; height: 100.0%;">Auckland: Though based in New Zealand, McQuarrie is married to a Tuvaluan and has connections with the Tuvaluan community in Auckland.</div>`)[0];
+                popup_5512c0850df9f7763288cafd99069bc7.setContent(html_546c9c538aec49bc69fe01a400a1b0c4);
+            
+        
+
+        marker_a39eb3ba8fcd4930c583ee5d3f8a7c8a.bindPopup(popup_5512c0850df9f7763288cafd99069bc7)
+        ;
+
+        
+    
+</script>
+</html>

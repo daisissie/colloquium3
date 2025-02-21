@@ -105,13 +105,20 @@ def is_city(loc):
         return True
     return False
 
-def get_context(text, start_char, end_char, window=50):
+def get_context(doc, start_char, end_char):
     """
-    Retrieves a snippet of text surrounding the location occurrence.
+    Retrieves the full sentence containing the target text from the spaCy document.
+    If no sentence fully contains the target, a fallback window is returned.
     """
-    context_start = max(0, start_char - window)
-    context_end = min(len(text), end_char + window)
-    return text[context_start:context_end]
+    # Attempt to extract the complete sentence containing the given character range.
+    for sent in doc.sents:
+        if sent.start_char <= start_char and sent.end_char >= end_char:
+            return sent.text.strip()
+    
+    # Fallback: Return a longer fixed window if no sentence boundary is found.
+    context_start = max(0, start_char - 100)
+    context_end = min(len(doc.text), end_char + 100)
+    return doc.text[context_start:context_end].strip()
 
 # ---------------------------
 # 3. Main Workflow
@@ -148,7 +155,7 @@ with open(output_csv_file, mode='w', newline='', encoding='utf-8') as csvfile:
     for location, (start_char, end_char) in unique_locations.items():
         loc = get_geocode(location)
         if loc and is_city(loc):
-            context = get_context(extracted_text, start_char, end_char)
+            context = get_context(doc, start_char, end_char)
             csvwriter.writerow([location, loc.latitude, loc.longitude, context])
             print(f"{location}: ({loc.latitude}, {loc.longitude})")
             geojson_features.append({

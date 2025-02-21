@@ -9,7 +9,7 @@ const map = new mapboxgl.Map({
 
 // Load and display GeoJSON data
 map.on('load', function () {
-    fetch('prototyping_literature/output/justkids_locations.geojson')
+    fetch('/prototying_tuvalu/output/tuvalu1_locations.geojson')
         .then(response => response.json())
         .then(data => {
             map.addSource('walden_locations', {
