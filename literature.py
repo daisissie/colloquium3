@@ -8,7 +8,7 @@ import json
 import folium
 import time
 import os
-import subprocess  # Using subprocess to call Calibre's ebook-convert
+import subprocess
 from striprtf.striprtf import rtf_to_text
 
 # ---------------------------
