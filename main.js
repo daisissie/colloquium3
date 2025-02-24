@@ -7,51 +7,8 @@ const map = new mapboxgl.Map({
     zoom: 2 // Set initial zoom level
 });
 
-// Load and display GeoJSON data
+// Once the map loads, apply the grayscale filter to its canvas only,
+// leaving externally added markers (in interface.html) unaffected.
 map.on('load', function () {
-    fetch('/prototying_tuvalu/output/tuvalu1_locations.geojson')
-        .then(response => response.json())
-        .then(data => {
-            map.addSource('walden_locations', {
-                type: 'geojson',
-                data: data
-            });
-
-            map.addLayer({
-                id: 'walden_locations',
-                type: 'circle',
-                source: 'walden_locations',
-                paint: {
-                    'circle-radius': 6,
-                    'circle-color': '#B42222'
-                }
-            });
-
-            map.addLayer({
-                id: 'walden_locations_labels',
-                type: 'symbol',
-                source: 'walden_locations',
-                layout: {
-                    'text-field': ['get', 'Location'],
-                    'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
-                    'text-offset': [0, 0.6],
-                    'text-anchor': 'top'
-                }
-            });
-
-            // Add popups with location information
-            data.features.forEach(function (feature) {
-                const coordinates = feature.geometry.coordinates.slice();
-                const name = feature.properties.name;
-                const context = feature.properties.context; // new: get context
-
-                new mapboxgl.Marker()
-                    .setLngLat(coordinates)
-                    .setPopup(
-                        new mapboxgl.Popup().setHTML(`<h3>${name}</h3><p>${context}</p>`)
-                    )
-                    .addTo(map);
-            });
-        })
-        .catch(error => console.error('Error loading GeoJSON data:', error));
+    map.getCanvas().style.filter = 'grayscale(100%)';
 });

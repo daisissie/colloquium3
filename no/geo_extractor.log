@@ -1,0 +1,21 @@
+2025-02-23 16:19:44,465 - INFO - 开始处理文件: prototyping_literature/data/呼兰河传-萧红.epub
+2025-02-23 19:12:08,859 - INFO - 开始处理文件: /Users/daiyu/Documents/github_mac/colloquium3/prototyping_literature/data/呼兰河传-萧红.epub
+2025-02-23 19:14:18,512 - INFO - 开始处理文件: /Users/daiyu/Documents/github_mac/colloquium3/prototyping_literature/data/呼兰河传-萧红.epub
+2025-02-23 19:14:26,303 - INFO - 识别到 117 个地理位置
+2025-02-23 19:16:35,084 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /search?q=%E4%BF%84&format=json&limit=1&accept-language=zh
+2025-02-23 19:16:36,274 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /search?q=%E4%BF%84&format=json&limit=1&accept-language=zh
+2025-02-23 19:16:37,467 - WARNING - 地理编码失败 [俄]: HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Max retries exceeded with url: /search?q=%E4%BF%84&format=json&limit=1&accept-language=zh (Caused by ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)"))
+2025-02-23 19:16:56,145 - INFO - 处理完成！生成文件：output.csv, output.geojson, output_map.html
+2025-02-23 20:28:47,760 - INFO - 开始处理文件: /Users/daiyu/Documents/github_mac/colloquium3/prototyping_literature/data/呼兰河传-萧红.epub
+2025-02-23 20:28:55,501 - INFO - 识别到 117 个地理位置
+2025-02-23 20:30:22,910 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /search?q=%E4%BA%91%E6%B8%B8&format=json&limit=1&accept-language=zh
+2025-02-23 20:31:06,683 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /search?q=%E4%BF%84&format=json&limit=1&accept-language=zh
+2025-02-23 20:31:07,885 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /search?q=%E4%BF%84&format=json&limit=1&accept-language=zh
+2025-02-23 20:31:09,111 - WARNING - 地理编码失败 [俄]: HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Max retries exceeded with url: /search?q=%E4%BF%84&format=json&limit=1&accept-language=zh (Caused by ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)"))
+2025-02-23 20:31:27,949 - INFO - 处理完成！生成文件：output.csv, output.geojson, output_map.html
+2025-02-23 20:34:43,539 - INFO - 开始处理文件: /Users/daiyu/Documents/github_mac/colloquium3/prototyping_literature/data/平凡的世界.txt
+2025-02-23 20:34:43,540 - ERROR - 文件解析失败: 'utf-8' codec can't decode byte 0xb7 in position 2: invalid start byte
+2025-02-23 21:05:34,137 - INFO - 开始处理文件: /Users/daiyu/Documents/github_mac/colloquium3/prototyping_literature/data/我与地坛.epub
+2025-02-23 21:06:14,718 - ERROR - 请安装 HanLP: pip install hanlp
+2025-02-23 21:08:18,908 - INFO - 开始处理文件: /Users/daiyu/Documents/github_mac/colloquium3/prototyping_literature/data/我与地坛.epub
+2025-02-23 21:08:19,125 - ERROR - 请安装 HanLP: pip install hanlp
