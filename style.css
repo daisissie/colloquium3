@@ -27,9 +27,9 @@ html, body {
 }
 
 .container h1 {
-    font-size: 4em;
+    font-size: 2em;
     margin-top: 0;
-    font-weight: 200;
+    font-weight: 500;
     letter-spacing: 5px;
 }
 

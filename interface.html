@@ -14,7 +14,8 @@
         <ul class="toc">
             
             <h1><a href="index.html" style="color: rgb(0, 0, 0); text-decoration: none;">Nature Echoes: Memory Landscapes </a></h1>
-            <h1></h1><a href="about.html">About</a></h1>
+            <p><a href="about.html">About</a></p>
+            <p><a href="index.html">Starting page</a></p>
 
         </ul>
     </header>
@@ -23,13 +24,15 @@
         <div class="data-input">
           <h2>Data Input</h2>
           <form action="/upload" method="POST" enctype="multipart/form-data">
+              <!--
               <label for="type">Type your memory:</label>
               <textarea id="type" name="type" placeholder="Enter your memory here, not working rn" rows="3" cols="50"></textarea>
+              -->
               <br>
               <!-- New sample dataset toggles -->
               <label for="import">Walden by Henry David Thoreau</label>
               <br>
-              <button type="button" id="toggle-walden">Walden</button>
+              <button type="button" id="toggle-walden" style="background-color: green; color: white;">Walden</button>
               <button type="button" id="remove-walden-markers">Turn markers off</button>
               <script>
                 let waldenMarkers = [];
@@ -75,7 +78,7 @@
 
             <label for="import">Pilgrim at Tinker Creek by Annie Dillard</label>
             <br>
-            <button type="button" id="toggle-pilgrim">Pilgrim at Tinker Creek</button>
+            <button type="button" id="toggle-pilgrim" style="background-color: green; color: white;">Pilgrim at Tinker Creek</button>
             <button type="button" id="remove-pilgrim-markers">Turn markers off</button>
             <script>
               let pilgrimMarkers = [];
