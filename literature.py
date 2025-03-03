@@ -4,34 +4,23 @@ import ebooklib
 from ebooklib import epub
 from bs4 import BeautifulSoup
 import csv
-import json
-import folium
 import time
 import os
-import subprocess
-from striprtf.striprtf import rtf_to_text
-import difflib
 import sys
+import difflib
 
 # ---------------------------
-# 1. Text Extraction Functions
+# 1. Text Extraction Functions (EPUB Only)
 # ---------------------------
 
 def extract_text(file_path):
     """
-    Extracts text from an EPUB, MOBI, TXT, or RTF file based on its extension.
+    Extracts text from an EPUB file.
     """
     if file_path.lower().endswith('.epub'):
         return extract_text_from_epub(file_path)
-    elif file_path.lower().endswith('.mobi'):
-        return extract_text_from_mobi(file_path)
-    elif file_path.lower().endswith('.txt'):
-        with open(file_path, 'r', encoding='utf-8') as f:
-            return f.read()
-    elif file_path.lower().endswith('.rtf'):
-        return extract_text_from_rtf(file_path)
     else:
-        raise ValueError("Unsupported file format. Please provide a .epub, .mobi, .txt, or .rtf file.")
+        raise ValueError("Unsupported file format. Please provide an .epub file.")
 
 def extract_text_from_epub(file_path):
     """
@@ -45,32 +34,6 @@ def extract_text_from_epub(file_path):
             text.append(soup.get_text())
     return '\n'.join(text)
 
-def convert_mobi_to_epub(input_path, output_path):
-    """
-    Converts a MOBI file to EPUB format using the ebook-convert command.
-    Ensure that Calibre's ebook-convert is installed and accessible from the PATH.
-    """
-    command = ['ebook-convert', input_path, output_path]
-    subprocess.run(command, check=True)
-
-def extract_text_from_mobi(file_path):
-    """
-    Extracts text content from a MOBI file by converting it to EPUB and then using extract_text_from_epub.
-    """
-    temp_epub = "temp_converted.epub"
-    convert_mobi_to_epub(file_path, temp_epub)
-    text = extract_text_from_epub(temp_epub)
-    os.remove(temp_epub)  # Clean up the temporary EPUB file
-    return text
-
-def extract_text_from_rtf(file_path):
-    """
-    Reads an RTF file and extracts its text content.
-    """
-    with open(file_path, 'r', encoding='utf-8') as f:
-        rtf_content = f.read()
-    return rtf_to_text(rtf_content)
-
 # ---------------------------
 # 2. Setup NLP and Geocoder
 # ---------------------------
@@ -82,18 +45,20 @@ nlp = spacy.load("en_core_web_trf")
 # Set up the geocoder using OpenStreetMap's Nominatim service.
 geolocator = Nominatim(user_agent="geo_extractor")
 
-def get_geocode(location):
+def get_geocode(location, retries=3, timeout=10):
     """
     Returns the geocode result for a given location string.
-    Includes a delay to respect rate limits.
+    Tries multiple times with a specified timeout.
     """
-    try:
-        loc = geolocator.geocode(location)
-        time.sleep(1)  # Pause to avoid rate limits
-        return loc
-    except Exception as e:
-        print(f"Error geocoding {location}: {e}")
-        return None
+    for attempt in range(retries):
+        try:
+            loc = geolocator.geocode(location, timeout=timeout)
+            time.sleep(1)  # Pause to avoid rate limits
+            if loc:
+                return loc
+        except Exception as e:
+            print(f"Error geocoding {location} (attempt {attempt+1}): {e}")
+    return None
 
 def is_city(loc):
     """
@@ -107,8 +72,17 @@ def is_city(loc):
             return False
         if loc_type in ['city', 'town', 'village', 'hamlet', 'locality']:
             return True
-        # Accept other types if needed (e.g., region, suburb, etc.)
+        # Accept other types if needed.
         return True
+    return False
+
+def is_in_united_states(loc):
+    """
+    Checks if the geocoded location is in the United States.
+    """
+    if loc and loc.raw.get("address"):
+        address = loc.raw["address"]
+        return address.get("country_code", "").lower() == "us"
     return False
 
 def get_context(doc, start_char, end_char):
@@ -131,39 +105,48 @@ def get_context(doc, start_char, end_char):
 def process_file(file_path):
     extracted_text = extract_text(file_path)
     doc = nlp(extracted_text)
+    
+    # Extract locations using NER from spaCy.
     locations_info = []
     for ent in doc.ents:
         if ent.label_ in ["GPE", "LOC"]:
             locations_info.append((ent.text, ent.start_char, ent.end_char))
+    
+    # Combine repeated locations and store all their context occurrences.
     unique_locations = {}
     for loc_text, start_char, end_char in locations_info:
         normalized = loc_text.lower().strip()
-        similar_found = False
+        found_key = None
         for key in unique_locations.keys():
             if difflib.SequenceMatcher(None, normalized, key).ratio() > 0.8:
-                similar_found = True
+                found_key = key
                 break
-        if not similar_found:
-            unique_locations[normalized] = (loc_text, start_char, end_char)
+        if found_key is not None:
+            unique_locations[found_key]["occurrences"].append((start_char, end_char))
+        else:
+            unique_locations[normalized] = {"orig_text": loc_text, "occurrences": [(start_char, end_char)]}
     
-    # Write output as CSV and store it in the new output folder
+    # Prepare output CSV file.
     output_dir = "/Users/daiyu/Documents/github_mac/colloquium3/csv_output"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     base_name = os.path.splitext(os.path.basename(file_path))[0]
     output_csv_file = os.path.join(output_dir, f"locations_{base_name}.csv")
     
-    import csv
     with open(output_csv_file, mode='w', newline='', encoding='utf-8') as csvfile:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerow(["Location", "Latitude", "Longitude", "Context"])
-        for norm_text, (orig_text, start_char, end_char) in unique_locations.items():
+        for norm_text, data in unique_locations.items():
+            orig_text = data["orig_text"]
+            occurrences = data["occurrences"]
+            # Combine all contexts from repeated occurrences, separated by " | "
+            context_list = [get_context(doc, start, end) for start, end in occurrences]
+            combined_context = " | ".join(context_list)
             loc = get_geocode(orig_text)
-            if loc and is_city(loc):
-                context = get_context(doc, start_char, end_char)
-                csvwriter.writerow([orig_text, loc.latitude, loc.longitude, context])
+            if loc and is_in_united_states(loc) and is_city(loc):
+                csvwriter.writerow([orig_text, loc.latitude, loc.longitude, combined_context])
             else:
-                csvwriter.writerow([orig_text, None, None, None])
+                csvwriter.writerow([orig_text, None, None, combined_context])
     return f"CSV file '{output_csv_file}' has been created."
 
 def main():
@@ -173,7 +156,7 @@ def main():
         sys.exit(1)
     for filename in os.listdir(input_dir):
         file_path = os.path.join(input_dir, filename)
-        if os.path.isfile(file_path) and file_path.lower().endswith(('.epub', '.mobi', '.txt', '.rtf')):
+        if os.path.isfile(file_path) and file_path.lower().endswith('.epub'):
             print(f"Processing file: {file_path}")
             result = process_file(file_path)
             print(result)
