@@ -24,7 +24,8 @@ def csv_to_geojson(csv_file, geojson_file):
                 },
                 "properties": {
                     "name": row.get("Location", ""),
-                    "context": row.get("Context", "")
+                    "context": row.get("Context", ""),
+                    "Presence": row.get("Presence", "")  # Include Presence
                 }
             }
             features.append(feature)

@@ -8,9 +8,12 @@ import time
 import os
 import sys
 import difflib
+import nltk
+from geopy.exc import GeocoderTimedOut, GeocoderServiceError
+from nltk.sentiment import SentimentIntensityAnalyzer
 
 # ---------------------------
-# 1. Text Extraction Functions (EPUB Only)
+# 1. Text Extraction Functions
 # ---------------------------
 
 def extract_text(file_path):
@@ -56,8 +59,13 @@ def get_geocode(location, retries=3, timeout=10):
             time.sleep(1)  # Pause to avoid rate limits
             if loc:
                 return loc
-        except Exception as e:
+        except (GeocoderTimedOut, GeocoderServiceError) as e:
             print(f"Error geocoding {location} (attempt {attempt+1}): {e}")
+            if attempt == retries - 1:
+                return None  # Only return None after all retries have failed
+        except Exception as e:
+            print(f"Unexpected error geocoding {location}: {e}")
+            return None
     return None
 
 def is_city(loc):
@@ -76,27 +84,56 @@ def is_city(loc):
         return True
     return False
 
-def is_in_united_states(loc):
-    """
-    Checks if the geocoded location is in the United States.
-    """
-    if loc and loc.raw.get("address"):
-        address = loc.raw["address"]
-        return address.get("country_code", "").lower() == "us"
-    return False
-
 def get_context(doc, start_char, end_char):
     """
     Retrieves the full sentence containing the target text from the spaCy document.
-    If no sentence fully contains the target, a fallback window is returned.
+    Returns the sentence as a spaCy Span object.
     """
     for sent in doc.sents:
         if sent.start_char <= start_char and sent.end_char >= end_char:
-            return sent.text.strip()
+            return sent
     # Fallback: Return a longer fixed window if no sentence boundary is found.
     context_start = max(0, start_char - 100)
     context_end = min(len(doc.text), end_char + 100)
     return doc.text[context_start:context_end].strip()
+
+# Initialize sentiment analyzer
+sia = SentimentIntensityAnalyzer()
+
+def determine_presence(sentence, location):
+    """
+    Determines whether the author was physically present at the location.
+    """
+    # Analyze sentiment
+    sentiment_score = sia.polarity_scores(sentence)["compound"]
+
+    # Check for keywords
+    physical_keywords = ["visited", "saw", "walked", "lived", "stayed"]
+    mental_keywords = ["thought", "imagined", "remembered", "dreamed"]
+
+    physical_presence = any(keyword in sentence.lower() for keyword in physical_keywords)
+    mental_presence = any(keyword in sentence.lower() for keyword in mental_keywords)
+
+    # Analyze dependency parsing
+    doc = nlp(sentence)
+    for token in doc:
+        if token.dep_ == "ROOT" and token.lemma_ in ["visit", "see", "walk", "live", "stay"]:
+            physical_presence = True
+        if token.dep_ == "ROOT" and token.lemma_ in ["think", "imagine", "remember", "dream"]:
+            mental_presence = True
+
+    # Make a determination based on the analysis
+    if physical_presence and not mental_presence:
+        return "Physically present"
+    elif mental_presence and not physical_presence:
+        return "Mentally present"
+    elif physical_presence and mental_presence:
+        return "Both physically and mentally present"
+    else:
+        if sentiment_score > 0.5:
+            return "Likely physically present (positive sentiment)"
+        else:
+            return "Unclear"
 
 # ---------------------------
 # 3. Main Workflow
@@ -112,20 +149,6 @@ def process_file(file_path):
         if ent.label_ in ["GPE", "LOC"]:
             locations_info.append((ent.text, ent.start_char, ent.end_char))
     
-    # Combine repeated locations and store all their context occurrences.
-    unique_locations = {}
-    for loc_text, start_char, end_char in locations_info:
-        normalized = loc_text.lower().strip()
-        found_key = None
-        for key in unique_locations.keys():
-            if difflib.SequenceMatcher(None, normalized, key).ratio() > 0.8:
-                found_key = key
-                break
-        if found_key is not None:
-            unique_locations[found_key]["occurrences"].append((start_char, end_char))
-        else:
-            unique_locations[normalized] = {"orig_text": loc_text, "occurrences": [(start_char, end_char)]}
-    
     # Prepare output CSV file.
     output_dir = "/Users/daiyu/Documents/github_mac/colloquium3/csv_output"
     if not os.path.exists(output_dir):
@@ -135,18 +158,24 @@ def process_file(file_path):
     
     with open(output_csv_file, mode='w', newline='', encoding='utf-8') as csvfile:
         csvwriter = csv.writer(csvfile)
-        csvwriter.writerow(["Location", "Latitude", "Longitude", "Context"])
-        for norm_text, data in unique_locations.items():
-            orig_text = data["orig_text"]
-            occurrences = data["occurrences"]
-            # Combine all contexts from repeated occurrences, separated by " | "
-            context_list = [get_context(doc, start, end) for start, end in occurrences]
-            combined_context = " | ".join(context_list)
-            loc = get_geocode(orig_text)
-            if loc and is_in_united_states(loc) and is_city(loc):
-                csvwriter.writerow([orig_text, loc.latitude, loc.longitude, combined_context])
+        csvwriter.writerow(["Location", "Latitude", "Longitude", "Context", "Presence"])
+        
+        # Iterate through the locations in the order they appear
+        for loc_text, start_char, end_char in locations_info:
+            context = get_context(doc, start_char, end_char)
+            if isinstance(context, spacy.tokens.Span):
+                presence = determine_presence(context.text, loc_text)
+                loc = get_geocode(loc_text)
+                if loc and is_city(loc):
+                    csvwriter.writerow([loc_text, loc.latitude, loc.longitude, context.text, presence])
+                    print(f"Geocoded {loc_text}: ({loc.latitude}, {loc.longitude}), Presence: {presence}")
+                else:
+                    csvwriter.writerow([loc_text, None, None, context.text, presence])
+                    print(f"Could not geocode or did not meet criteria: {loc_text}, Presence: {presence}")
             else:
-                csvwriter.writerow([orig_text, None, None, combined_context])
+                csvwriter.writerow([loc_text, None, None, context, "Unclear"])
+                print(f"Could not determine presence: {loc_text}")
+                
     return f"CSV file '{output_csv_file}' has been created."
 
 def main():
