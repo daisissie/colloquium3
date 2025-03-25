@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embedded Map</title>
+    <title> Map</title>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js'></script>
     <link rel="stylesheet" href="style.css">
@@ -14,7 +14,8 @@
     <header class="fixed-header">
       <div class="header-container" style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
           <h1 style="margin: 0;">
-            <a href="index.html" style="color: #000; text-decoration: none;">Memory Landscapes</a>
+              <img src="assets/marker_logo-02.png" style="width:60px; vertical-align:middle; margin-right:10px;">
+              Memory Landscapes
           </h1>
           <a href="about.html" style="color: #000; text-decoration: none;">About</a>
       </div>
@@ -22,6 +23,9 @@
 
     <div class="interface_container">
         <div class="data-input">
+          <p>
+          The memoirs capture not just physical locations but also the emotional and sensory experiences tied to those places.
+          </p>
           <h2>Data Input</h2>
           <form action="/upload" method="POST" enctype="multipart/form-data">
               <!--
@@ -29,7 +33,7 @@
               <textarea id="type" name="type" placeholder="Enter your memory here, not working rn" rows="3" cols="50"></textarea>
               -->
               <br>
-              <!-- New sample dataset toggles -->
+
               <label for="import">Walden by Henry David Thoreau</label>
               <br>
               <button type="button" id="toggle-walden-text" style="background-color: green; color: white;">Walden Intro</button>

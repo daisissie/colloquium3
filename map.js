@@ -1,18 +1,23 @@
-// Initialize Mapbox
 mapboxgl.accessToken = 'pk.eyJ1IjoieWRhaTExMTIiLCJhIjoiY2x6ajE1bTRwMG4yZzJxcThleWoxMXJ1aiJ9.aBTNSgDeUDCJBkCpDEvopg';
 
 document.addEventListener('DOMContentLoaded', function() {
     const map = new mapboxgl.Map({
         container: 'map', // id of the element where the map will be injected
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-71.0589, 42.3601], // Boston, MA
-        zoom: 12
+        style: 'mapbox://styles/mapbox/dark-v10', // changed base map style
+        center: [0, 0], // updated to world view
+        zoom: 2         // updated to world view
     });
 
-    // Once the map loads, apply the grayscale filter to its canvas only,
-    // leaving externally added markers (in interface.html) unaffected.
+    // Define flag to stop zooming
+    let stopZoom = false;
+    map.on('click', () => {
+        stopZoom = true;
+    });
+
+    // Variable to store the currently open popup
+    let currentPopup = null;
+
     map.on('load', function () {
-        map.getCanvas().style.filter = 'grayscale(100%)';
 
         // Fetch GeoJSON data and add markers
         fetch("geojson_output/locations_henry-david-thoreau_walden.geojson")
@@ -51,13 +56,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 map.fitBounds(bounds, {
                     padding: 50 // Add some padding around the markers
                 });
-
-                // Create markers for each group of features
-                featureArray.forEach(groupedFeature => {
-                    const { coordinates, properties } = groupedFeature;
-                    console.log("Coordinates:", coordinates);
-
-                    // Combine all contexts and presences into a single string
+                
+                // Animate markers one at a time and zoom into each location
+                function animateMarkers(index) {
+                    if (index >= featureArray.length) return;
+                    const { coordinates, properties } = featureArray[index];
+                    
+                    // Combine contexts and presences
                     const uniqueContexts = [];
                     properties.forEach(prop => {
                         const context = prop.context || "No context available";
@@ -66,59 +71,81 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     });
                     const contexts = uniqueContexts.join("<hr>");
-
+                    
+                    // Highlight occurrences of the name in the context text
+                    const highlightedContexts = contexts.replace(new RegExp(properties[0].name, 'g'),
+                        '<span style="background-color: yellow; font-weight: bold;">' + properties[0].name + '</span>');
+                    
                     const uniquePresences = [];
                     properties.forEach(prop => {
                         const presence = prop.Presence || "No Presence specified";
-                        if (!uniquePresences.includes(presence)){
+                        if (!uniquePresences.includes(presence)) {
                             uniquePresences.push(presence);
                         }
                     });
                     const presences = uniquePresences.join("<hr>");
-
                     const locations = properties.map(prop => prop.name || "name").join("<hr>");
-
-                    // Determine marker color based on presence (using the first presence for simplicity)
+                    
                     let presence = properties[0].Presence || "Presence not specified";
-                    let markerColor = 'lightblue'; // Default color
-                    if (presence.includes("Likely physically present")) {
-                        markerColor = 'rgba(29, 98, 28, 0.41)'; // Green
-                    } else if (presence.includes("Physically present")) {
-                        markerColor = 'rgb(29, 98, 28)'; // Dark Green
-                    } else if (presence.includes("Mentally present")) {
-                        markerColor = 'rgb(29, 98, 28)'; // Pink
-                    } else if (presence.includes("Unclear")) {
-                        markerColor = 'rgba(4, 255, 0, 0.35)'; // Pink
-                    } else {
-                        markerColor = 'rgba(4, 255, 0, 0.35)'; // Default color
-                    }
 
-                    // Create a popup with all contexts and presences
-                    const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
-                        `<div style="max-height: 200px; max-width: 500px; overflow-y: auto;">
+                    // Create popup using highlightedContexts instead of contexts
+                    const popup = new mapboxgl.Popup({ offset: 15, closeOnClick: false, anchor: 'left' }).setHTML(
+                        `<div style="max-height: 500px; width: 700px; overflow-y: auto;">
                             <h2 style="position: sticky; top: 0; background-color: white; z-index: 1;">${properties[0].name}</h2>
-                            <p>${properties[0].context || "No context available"}</p>
-                            <p>Presence: ${properties[0].Presence || "Presence not specified"}</p>
-                            <hr>
-                            <p>${contexts}</p>
-                            <p>Presence: ${presences}</p>
+                            <p>${highlightedContexts || "No context available"}</p>
                         </div>`
                     );
-
-                    // Create a custom marker element
-                    const el = document.createElement('div');
-                    el.style.width = '10px';
-                    el.style.height = '10px';
-                    el.style.backgroundColor = markerColor;
-                    el.style.borderRadius = '50%';
-
-                    // Add the custom marker to the map
-                    const marker = new mapboxgl.Marker(el)
+                    
+                    const el = document.createElement('img');
+                    el.src = 'assets/marker_logo-01.png';
+                    el.style.width = '30px'; // Marker image width
+                    el.style.height = '30px'; // Marker image height
+                    
+                    const marker = new mapboxgl.Marker(el, { anchor: 'bottom' })
                         .setLngLat(coordinates)
-                        .setPopup(popup)
                         .addTo(map);
-                    console.log("Marker created:", marker);
-                });
+                    
+                    // Replace previous event listeners for popup:
+                    let hoverTimer;
+                    el.addEventListener('mouseenter', () => {
+                        hoverTimer = setTimeout(() => {
+                            // Close the current popup if it exists
+                            if (currentPopup) {
+                                currentPopup.remove();
+                            }
+                            popup.setLngLat(coordinates);
+                            popup.addTo(map);
+                            currentPopup = popup; // Set the current popup
+                            map.panTo(coordinates, { duration: 500 }); // center the popup on the page
+                        }, 0);
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        clearTimeout(hoverTimer);
+                        // Do not remove popup once it is shown.
+                    });
+                    
+                    // Only zoom if stopZoom flag is false
+                    if (!stopZoom) {
+                        // Enlarge current marker when hovering over and the popup shows up
+                        el.style.transition = 'width 0.3s, height 0.3s';
+                        el.style.width = '100px';
+                        el.style.height = '100px';
+                        map.flyTo({
+                            center: coordinates,
+                            zoom: 15,
+                            speed: 0.8
+                        });
+                        // Revert marker size after zoom animation completes
+                        map.once('moveend', () => {
+                            el.style.width = '30px';
+                            el.style.height = '30px';
+                        });
+                    }
+                    
+                    // Show next marker after a short delay (adjust delay as needed)
+                    setTimeout(() => animateMarkers(index + 1), 1500);
+                }
+                animateMarkers(0);
 
                 // Prepare line data
                 const lineCoordinates = featureArray.map(feature => feature.coordinates);

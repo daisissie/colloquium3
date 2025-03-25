@@ -81,7 +81,7 @@ header {
   }
   
 .data-input {
-    flex: 0 0 30%;
+    flex: 0 0 20%;
     padding: 20px;
     background-color: #f9f9f9; /* optional background */
     box-sizing: border-box;
@@ -89,7 +89,7 @@ header {
   }
   
   .map-section {
-    flex: 0 0 70%;
+    flex: 0 0 80%;
     padding: 0px;
     box-sizing: border-box;
     height: 100%; /* Make map section take up full height */

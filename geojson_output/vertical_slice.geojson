@@ -1,0 +1,965 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.097111411815811,
+                    51.520076
+                ]
+            },
+            "properties": {
+                "name": "Flint\u2019s Pond",
+                "context": "Sometimes I rambled to pine groves, standing like temples, or like fleets at sea, full-rigged, with wavy boughs, and rippling with light, so soft and green and shady that the Druids would have forsaken their oaks to worship in them; or to the cedar wood beyond Flint\u2019s Pond, where the trees, covered with hoary blue berries, spiring higher and higher, are fit to stand before Valhalla, and the creeping juniper covers the ground with wreaths full of fruit; or to swamps where the usnea lichen hangs in festoons from the white spruce trees, and toadstools, round tables of the swamp gods, cover the ground, and more beautiful fungi adorn the stumps, like butterflies or shells, vegetable winkles; where the swamp-pink and dogwood grow, the red alderberry glows like eyes of imps, the waxwork grooves and crushes the hardest woods in its folds, and the wild holly berries make the beholder forget his home with their beauty, and he is dazzled and tempted by nameless other wild forbidden fruits, too fair for mortal taste.",
+                "Presence": "Likely physically present (positive sentiment)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    7.02255,
+                    0.9713095
+                ]
+            },
+            "properties": {
+                "name": "St.",
+                "context": "Benvenuto Cellini tells us in his memoirs, that, after a certain terrible dream or vision which he had during his confinement in the castle of St.\u00a0Angelo a resplendent light appeared over the shadow of his head at morning and evening, whether he was in Italy or France, and it was particularly conspicuous when the grass was moist with dew.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.674297,
+                    42.6384261
+                ]
+            },
+            "properties": {
+                "name": "Italy",
+                "context": "Benvenuto Cellini tells us in his memoirs, that, after a certain terrible dream or vision which he had during his confinement in the castle of St.\u00a0Angelo a resplendent light appeared over the shadow of his head at morning and evening, whether he was in Italy or France, and it was particularly conspicuous when the grass was moist with dew.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    1.8883335,
+                    46.603354
+                ]
+            },
+            "properties": {
+                "name": "France",
+                "context": "Benvenuto Cellini tells us in his memoirs, that, after a certain terrible dream or vision which he had during his confinement in the castle of St.\u00a0Angelo a resplendent light appeared over the shadow of his head at morning and evening, whether he was in Italy or France, and it was particularly conspicuous when the grass was moist with dew.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.0381947,
+                    40.3606653
+                ]
+            },
+            "properties": {
+                "name": "Fair Haven",
+                "context": "I set out one afternoon to go a-fishing to Fair Haven, through the woods, to eke out my scanty fare of vegetables.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -83.23456590606426,
+                    42.544784449999995
+                ]
+            },
+            "properties": {
+                "name": "Pleasant Meadow",
+                "context": "My way led through Pleasant Meadow, an adjunct of the Baker Farm, that retreat of which a poet has since sung, beginning\ufeff\u2014\r\n\r\n\r\n\u201cThy entry is a pleasant field,\r\n\r\nWhich some mossy fruit trees yield\r\n\r\nPartly to a ruddy brook,\r\n\r\nBy gliding musquash undertook,\r\n\r\nAnd mercurial trout,\r\n\r\nDarting about.\u201d\r\n\r\n\r\nI thought of living there before I went to Walden.",
+                "Presence": "Mentally present"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.1884806,
+                    41.5612048
+                ]
+            },
+            "properties": {
+                "name": "Walden",
+                "context": "My way led through Pleasant Meadow, an adjunct of the Baker Farm, that retreat of which a poet has since sung, beginning\ufeff\u2014\r\n\r\n\r\n\u201cThy entry is a pleasant field,\r\n\r\nWhich some mossy fruit trees yield\r\n\r\nPartly to a ruddy brook,\r\n\r\nBy gliding musquash undertook,\r\n\r\nAnd mercurial trout,\r\n\r\nDarting about.\u201d\r\n\r\n\r\nI thought of living there before I went to Walden.",
+                "Presence": "Mentally present"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -100.445882,
+                    39.7837304
+                ]
+            },
+            "properties": {
+                "name": "America",
+                "context": "I had sat there many times of old before the ship was built that floated his family to America.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -100.445882,
+                    39.7837304
+                ]
+            },
+            "properties": {
+                "name": "America",
+                "context": "I tried to help him with my experience, telling him that he was one of my nearest neighbors, and that I too, who came a-fishing here, and looked like a loafer, was getting my living like himself; that I lived in a tight, light, and clean house, which hardly cost more than the annual rent of such a ruin as his commonly amounts to; and how, if he chose, he might in a month or two build himself a palace of his own; that I did not use tea, nor coffee, nor butter, nor milk, nor fresh meat, and so did not have to work to get them; again, as I did not work hard, I did not have to eat hard, and it cost me but a trifle for my food; but as he began with tea, and coffee, and butter, and milk, and beef, he had to work hard to pay for them, and when he had worked hard he had to eat hard again to repair the waste of his system\ufeff\u2014and so it was as broad as it was long, indeed it was broader than it was long, for he was discontented and wasted his life into the bargain; and yet he had rated it as a gain in coming to America, that here you could get tea, and coffee, and meat every day.",
+                "Presence": "Physically present"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -100.445882,
+                    39.7837304
+                ]
+            },
+            "properties": {
+                "name": "America",
+                "context": "But the only true America is that country where you are at liberty to pursue such a mode of life as may enable you to do without these, and where the state does not endeavor to compel you to sustain the slavery and war and other superfluous expenses which directly or indirectly result from the use of such things.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -4.8379791,
+                    39.3260685
+                ]
+            },
+            "properties": {
+                "name": "Spain",
+                "context": "There\u2019s nothing like it in old paintings, nothing like it in foreign lands\ufeff\u2014unless when we were off the coast of Spain.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    19.9999957,
+                    35.0000035
+                ]
+            },
+            "properties": {
+                "name": "Mediterranean",
+                "context": "That\u2019s a true Mediterranean sky.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -71.33549281708,
+                    42.44652602536891
+                ]
+            },
+            "properties": {
+                "name": "Brister\u2019s Hill",
+                "context": "Commonly I rested an hour or two in the shade at noon, after planting, and ate my lunch, and read a little by a spring which was the source of a swamp and of a brook, oozing from under Brister\u2019s Hill, half a mile from my field.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -100.445882,
+                    39.7837304
+                ]
+            },
+            "properties": {
+                "name": "America",
+                "context": "And certainly there is not the fight recorded in Concord history, at least, if in the history of America, that will bear a moment\u2019s comparison with this, whether for the numbers engaged in it, or for the patriotism and heroism displayed.",
+                "Presence": "Likely physically present (positive sentiment)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -98.7039655,
+                    38.8758445
+                ]
+            },
+            "properties": {
+                "name": "Bunker Hill",
+                "context": "I have no doubt that it was a principle they fought for, as much as our ancestors, and not to avoid a threepenny tax on their tea; and the results of this battle will be as important and memorable to those whom it concerns as those of the battle of Bunker Hill, at least.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    14.5208584,
+                    59.6749712
+                ]
+            },
+            "properties": {
+                "name": "Sweden",
+                "context": "This event happened previous to the expulsion of the tyrant Christiern the Second from Sweden.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -96.7077751,
+                    40.8088861
+                ]
+            },
+            "properties": {
+                "name": "Lincoln",
+                "context": "A few years before I lived in the woods there was what was called a \u201cwinged cat\u201d in one of the farmhouses in Lincoln nearest the pond, Mr.\u00a0Gilian Baker\u2019s.",
+                "Presence": "Physically present"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -4.476251909620288,
+                    57.583831399999994
+                ]
+            },
+            "properties": {
+                "name": "Milldam",
+                "context": "At rumor of his arrival all the Milldam sportsmen are on the alert, in gigs and on foot, two by two and three by three, with patent rifles and conical balls and spyglasses.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.0060152,
+                    40.7127281
+                ]
+            },
+            "properties": {
+                "name": "New York",
+                "context": "It is said that loons have been caught in the New York lakes eighty feet beneath the surface, with hooks set for trout\ufeff\u2014though Walden is deeper than that.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -92.007126,
+                    30.8703881
+                ]
+            },
+            "properties": {
+                "name": "Louisiana",
+                "context": "For hours, in fall days, I watched the ducks cunningly tack and veer and hold the middle of the pond, far from the sportsman; tricks which they will have less need to practise in Louisiana bayous.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.1884806,
+                    41.5612048
+                ]
+            },
+            "properties": {
+                "name": "Walden",
+                "context": "When compelled to rise they would sometimes circle round and round and over the pond at a considerable height, from which they could easily see to other ponds and the river, like black motes in the sky; and, when I thought they had gone off thither long since, they would settle down by a slanting flight of a quarter of a mile on to a distant part which was left free; but what beside safety they got by sailing in the middle of Walden I do not know, unless they love its water for the same reason that I do.\r\n\r\n\r\n\r\n\r\n\r\n\r\nColophon\r\n\r\n\r\nWalden\r\n\t\t\twas published in 1854 by\r\nHenry David Thoreau.",
+                "Presence": "Mentally present"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -70.75378387447887,
+                    44.2057083
+                ]
+            },
+            "properties": {
+                "name": "New England",
+                "context": "The buckeye does not grow in New England, and the mockingbird is rarely heard here.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -107.991707,
+                    61.0666922
+                ]
+            },
+            "properties": {
+                "name": "Canada",
+                "context": "The wild goose is more of a cosmopolite than we; he breaks his fast in Canada, takes a luncheon in the Ohio, and plumes himself for the night in a southern bayou.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -82.6881395,
+                    40.2253569
+                ]
+            },
+            "properties": {
+                "name": "Ohio",
+                "context": "The wild goose is more of a cosmopolite than we; he breaks his fast in Canada, takes a luncheon in the Ohio, and plumes himself for the night in a southern bayou.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -105.607716,
+                    38.7251776
+                ]
+            },
+            "properties": {
+                "name": "Colorado",
+                "context": "Even the bison, to some extent, keeps pace with the seasons cropping the pastures of the Colorado only till a greener and sweeter grass awaits him by the Yellowstone.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -108.276076,
+                    45.9645464
+                ]
+            },
+            "properties": {
+                "name": "Yellowstone",
+                "context": "Even the bison, to some extent, keeps pace with the seasons cropping the pastures of the Colorado only till a greener and sweeter grass awaits him by the Yellowstone.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -67.8974895,
+                    -54.4071064
+                ]
+            },
+            "properties": {
+                "name": "Tierra del Fuego",
+                "context": "If you are chosen town clerk, forsooth, you cannot go to Tierra del Fuego this summer: but you may go to the land of infernal fire nevertheless.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.7578122,
+                    11.5024338
+                ]
+            },
+            "properties": {
+                "name": "Africa",
+                "context": "One hastens to southern Africa to chase the giraffe; but surely that is not the game he would be after.",
+                "Presence": "Likely physically present (positive sentiment)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -72.4387315,
+                    18.7668687
+                ]
+            },
+            "properties": {
+                "name": "West",
+                "context": "\u201d\r\n\r\n\r\nWhat does Africa\ufeff\u2014what does the West stand for?",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -120.94459953999998,
+                    46.836279
+                ]
+            },
+            "properties": {
+                "name": "Nile",
+                "context": "Is it the source of the Nile, or the Niger, or the Mississippi, or a Northwest Passage around this continent, that we would find?",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.3238432,
+                    17.7356214
+                ]
+            },
+            "properties": {
+                "name": "Niger",
+                "context": "Is it the source of the Nile, or the Niger, or the Mississippi, or a Northwest Passage around this continent, that we would find?",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -89.7348497,
+                    32.9715285
+                ]
+            },
+            "properties": {
+                "name": "Mississippi",
+                "context": "Is it the source of the Nile, or the Niger, or the Mississippi, or a Northwest Passage around this continent, that we would find?",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -85.13455033923398,
+                    41.1754197
+                ]
+            },
+            "properties": {
+                "name": "a Northwest Passage",
+                "context": "Is it the source of the Nile, or the Niger, or the Mississippi, or a Northwest Passage around this continent, that we would find?",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -4.190081656560633,
+                    55.75734642119591
+                ]
+            },
+            "properties": {
+                "name": "the Mungo Park",
+                "context": "Be rather the Mungo Park, the Lewis and Clark and Frobisher, of your own streams and oceans; explore your own higher latitudes\ufeff\u2014with shiploads of preserved meats to support you, if they be necessary; and pile the empty cans sky-high for a sign.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -121.18215033194784,
+                    45.603000550000004
+                ]
+            },
+            "properties": {
+                "name": "the Lewis and Clark and",
+                "context": "Be rather the Mungo Park, the Lewis and Clark and Frobisher, of your own streams and oceans; explore your own higher latitudes\ufeff\u2014with shiploads of preserved meats to support you, if they be necessary; and pile the empty cans sky-high for a sign.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -102.4277764,
+                    49.2083214
+                ]
+            },
+            "properties": {
+                "name": "Frobisher",
+                "context": "Be rather the Mungo Park, the Lewis and Clark and Frobisher, of your own streams and oceans; explore your own higher latitudes\ufeff\u2014with shiploads of preserved meats to support you, if they be necessary; and pile the empty cans sky-high for a sign.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.6632883,
+                    39.5143268
+                ]
+            },
+            "properties": {
+                "name": "Atlantic",
+                "context": "What was the meaning of that South-Sea Exploring Expedition, with all its parade and expense, but an indirect recognition of the fact that there are continents and seas in the moral world to which every man is an isthmus or an inlet, yet unexplored by him, but that it is easier to sail many thousand miles through cold and storm and cannibals, in a government ship, with five hundred men and boys to assist one, than it is to explore the private sea, the Atlantic and Pacific Ocean of one\u2019s being alone.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -120.9375,
+                    -0.703107
+                ]
+            },
+            "properties": {
+                "name": "Pacific Ocean",
+                "context": "What was the meaning of that South-Sea Exploring Expedition, with all its parade and expense, but an indirect recognition of the fact that there are continents and seas in the moral world to which every man is an isthmus or an inlet, yet unexplored by him, but that it is easier to sail many thousand miles through cold and storm and cannibals, in a government ship, with five hundred men and boys to assist one, than it is to explore the private sea, the Atlantic and Pacific Ocean of one\u2019s being alone.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    39.2074312,
+                    -6.1664908
+                ]
+            },
+            "properties": {
+                "name": "Zanzibar",
+                "context": "\r\n\r\n\r\n\u201cErret, et extremos alter scrutetur Iberos.\r\n\r\nlus habet hic vitae, plus habet ille viae.\u201d\r\n\r\n\r\nLet them wander and scrutinize the outlandish Australians.\r\n\r\nI have more of God, they more of the road.\r\n\r\n\r\nIt is not worth the while to go round the world to count the cats in Zanzibar.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.2649062,
+                    52.5310214
+                ]
+            },
+            "properties": {
+                "name": "England",
+                "context": "England and France, Spain and Portugal, Gold Coast and Slave Coast, all front on this private sea; but no bark from them has ventured out of sight of land, though it is without doubt the direct way to India.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    1.8883335,
+                    46.603354
+                ]
+            },
+            "properties": {
+                "name": "France",
+                "context": "England and France, Spain and Portugal, Gold Coast and Slave Coast, all front on this private sea; but no bark from them has ventured out of sight of land, though it is without doubt the direct way to India.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -4.8379791,
+                    39.3260685
+                ]
+            },
+            "properties": {
+                "name": "Spain",
+                "context": "England and France, Spain and Portugal, Gold Coast and Slave Coast, all front on this private sea; but no bark from them has ventured out of sight of land, though it is without doubt the direct way to India.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.1353519,
+                    39.6621648
+                ]
+            },
+            "properties": {
+                "name": "Portugal",
+                "context": "England and France, Spain and Portugal, Gold Coast and Slave Coast, all front on this private sea; but no bark from them has ventured out of sight of land, though it is without doubt the direct way to India.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    153.4145987,
+                    -28.0023731
+                ]
+            },
+            "properties": {
+                "name": "Gold Coast",
+                "context": "England and France, Spain and Portugal, Gold Coast and Slave Coast, all front on this private sea; but no bark from them has ventured out of sight of land, though it is without doubt the direct way to India.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    39.3805105,
+                    -4.6473978
+                ]
+            },
+            "properties": {
+                "name": "Slave Coast",
+                "context": "England and France, Spain and Portugal, Gold Coast and Slave Coast, all front on this private sea; but no bark from them has ventured out of sight of land, though it is without doubt the direct way to India.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    78.6677428,
+                    22.3511148
+                ]
+            },
+            "properties": {
+                "name": "India",
+                "context": "England and France, Spain and Portugal, Gold Coast and Slave Coast, all front on this private sea; but no bark from them has ventured out of sight of land, though it is without doubt the direct way to India.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -89.7348497,
+                    32.9715285
+                ]
+            },
+            "properties": {
+                "name": "Mississippi",
+                "context": "Start now on that farthest western way, which does not pause at the Mississippi or the Pacific, nor conduct toward a worn-out China or Japan, but leads on direct, a tangent to this sphere, summer and winter, day and night, sun down, moon down, and at last earth down too.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -123.768029,
+                    46.5334929
+                ]
+            },
+            "properties": {
+                "name": "Pacific",
+                "context": "Start now on that farthest western way, which does not pause at the Mississippi or the Pacific, nor conduct toward a worn-out China or Japan, but leads on direct, a tangent to this sphere, summer and winter, day and night, sun down, moon down, and at last earth down too.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    104.999955,
+                    35.0000663
+                ]
+            },
+            "properties": {
+                "name": "China",
+                "context": "Start now on that farthest western way, which does not pause at the Mississippi or the Pacific, nor conduct toward a worn-out China or Japan, but leads on direct, a tangent to this sphere, summer and winter, day and night, sun down, moon down, and at last earth down too.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.2394179,
+                    36.5748441
+                ]
+            },
+            "properties": {
+                "name": "Japan",
+                "context": "Start now on that farthest western way, which does not pause at the Mississippi or the Pacific, nor conduct toward a worn-out China or Japan, but leads on direct, a tangent to this sphere, summer and winter, day and night, sun down, moon down, and at last earth down too.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.2649062,
+                    52.5310214
+                ]
+            },
+            "properties": {
+                "name": "England",
+                "context": "It is a ridiculous demand which England and America make, that you shall speak so that they can understand you.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -100.445882,
+                    39.7837304
+                ]
+            },
+            "properties": {
+                "name": "America",
+                "context": "It is a ridiculous demand which England and America make, that you shall speak so that they can understand you.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.2649062,
+                    52.5310214
+                ]
+            },
+            "properties": {
+                "name": "England",
+                "context": "While England endeavors to cure the potato-rot, will not any endeavor to cure the brain-rot, which prevails so much more widely and fatally?",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.1186637,
+                    52.2055314
+                ]
+            },
+            "properties": {
+                "name": "Cambridge",
+                "context": "Southern customers objected to its blue color, which is the evidence of its purity, as if it were muddy, and preferred the Cambridge ice, which is white, but tastes of weeds.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -118.755997,
+                    36.7014631
+                ]
+            },
+            "properties": {
+                "name": "California",
+                "context": "They tell me of California and Texas, of England and the Indies, of the Hon.\u00a0Mr.\u00a0\u2014\ufeff\u2014\ufeff\u2014 of Georgia or of Massachusetts, all transient and fleeting phenomena, till I am ready to leap from their courtyard like the Mameluke bey.",
+                "Presence": "Likely physically present (positive sentiment)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -98.5456116,
+                    31.2638905
+                ]
+            },
+            "properties": {
+                "name": "Texas",
+                "context": "They tell me of California and Texas, of England and the Indies, of the Hon.\u00a0Mr.\u00a0\u2014\ufeff\u2014\ufeff\u2014 of Georgia or of Massachusetts, all transient and fleeting phenomena, till I am ready to leap from their courtyard like the Mameluke bey.",
+                "Presence": "Likely physically present (positive sentiment)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.2649062,
+                    52.5310214
+                ]
+            },
+            "properties": {
+                "name": "England",
+                "context": "They tell me of California and Texas, of England and the Indies, of the Hon.\u00a0Mr.\u00a0\u2014\ufeff\u2014\ufeff\u2014 of Georgia or of Massachusetts, all transient and fleeting phenomena, till I am ready to leap from their courtyard like the Mameluke bey.",
+                "Presence": "Likely physically present (positive sentiment)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3330731,
+                    48.8517774
+                ]
+            },
+            "properties": {
+                "name": "Indies",
+                "context": "They tell me of California and Texas, of England and the Indies, of the Hon.\u00a0Mr.\u00a0\u2014\ufeff\u2014\ufeff\u2014 of Georgia or of Massachusetts, all transient and fleeting phenomena, till I am ready to leap from their courtyard like the Mameluke bey.",
+                "Presence": "Likely physically present (positive sentiment)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -83.1137366,
+                    32.3293809
+                ]
+            },
+            "properties": {
+                "name": "Georgia",
+                "context": "They tell me of California and Texas, of England and the Indies, of the Hon.\u00a0Mr.\u00a0\u2014\ufeff\u2014\ufeff\u2014 of Georgia or of Massachusetts, all transient and fleeting phenomena, till I am ready to leap from their courtyard like the Mameluke bey.",
+                "Presence": "Likely physically present (positive sentiment)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -72.032366,
+                    42.3788774
+                ]
+            },
+            "properties": {
+                "name": "Massachusetts",
+                "context": "They tell me of California and Texas, of England and the Indies, of the Hon.\u00a0Mr.\u00a0\u2014\ufeff\u2014\ufeff\u2014 of Georgia or of Massachusetts, all transient and fleeting phenomena, till I am ready to leap from their courtyard like the Mameluke bey.",
+                "Presence": "Likely physically present (positive sentiment)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    104.999955,
+                    35.0000663
+                ]
+            },
+            "properties": {
+                "name": "China",
+                "context": "Consider the China pride and stagnant self-complacency of mankind.",
+                "Presence": "Unclear"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -71.060511,
+                    42.3554334
+                ]
+            },
+            "properties": {
+                "name": "Boston",
+                "context": "This generation inclines a little to congratulate itself on being the last of an illustrious line; and in Boston and London and Paris and Rome, thinking of its long descent, it speaks of its progress in art and science and literature with satisfaction.",
+                "Presence": "Likely physically present (positive sentiment)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.1277653,
+                    51.5074456
+                ]
+            },
+            "properties": {
+                "name": "London",
+                "context": "This generation inclines a little to congratulate itself on being the last of an illustrious line; and in Boston and London and Paris and Rome, thinking of its long descent, it speaks of its progress in art and science and literature with satisfaction.",
+                "Presence": "Likely physically present (positive sentiment)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3483915,
+                    48.8534951
+                ]
+            },
+            "properties": {
+                "name": "Paris",
+                "context": "This generation inclines a little to congratulate itself on being the last of an illustrious line; and in Boston and London and Paris and Rome, thinking of its long descent, it speaks of its progress in art and science and literature with satisfaction.",
+                "Presence": "Likely physically present (positive sentiment)"
+            }
+        }
+    ]
+}
