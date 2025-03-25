@@ -23,9 +23,9 @@ def csv_to_geojson(csv_file, geojson_file):
                     "coordinates": [lon, lat]
                 },
                 "properties": {
-                    "name": row.get("Location", ""),
+                    "LocationName": row.get("LocationName", ""),
                     "context": row.get("Context", ""),
-                    "Presence": row.get("Presence", "")  # Include Presence
+                    "Sentiment": row.get("Sentiment", "")
                 }
             }
             features.append(feature)

@@ -8,6 +8,7 @@ body {
     font-weight: 100;
     letter-spacing: 3px;
     height: 100%;
+    cursor: url('/assets/marker_logo-01.png') 0 0, auto;
 }
 
 /* Make the map occupy the full viewport */
@@ -108,4 +109,22 @@ header {
     height: 100%;
     width: 100%;
     margin: 20px auto;
+}
+
+/* About Page Styles */
+.about_container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 20px;
+}
+.about-main, 
+.about-methodology {
+    flex: 1;
+}
+.about-methodology {
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 4px;
 }

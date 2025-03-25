@@ -5,32 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .about_container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px; /* Added side padding */
-        }
-    </style>
 </head>
 
 <header class="fixed-header">
     <div class="header-container" style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
         <a href="interface.html" style="text-decoration: none; color: inherit;">
             <h1 style="margin: 0;">
-                <img src="assets/marker_logo-02.png" style="width:60px; vertical-align:middle; margin-right:10px;">
+                <img src="assets/marker_logo-02.png" style="width:80px; vertical-align:middle; margin-right:10px;">
                 Memory Landscapes
             </h1>
         </a>
         <a href="about.html" style="color: #000; text-decoration: none;">About</a>
     </div>
-  </header>
+</header>
 
 <body>
     <div class="about_container">
-        <h2>About</h2>
-        <p>The project explores how to turn non-spatial data—memories and written stories—into spatial maps. I am investigating how diaries, memoirs can reveal hidden insights about people and places when shown on a map. Memories are personal and often very fuzzy and blurry, but they hold details that shape our identities and our sense of place.</p>
-        <p>This idea is sort of inspired by the art game “exquisite corpse”. When clicking on each spot, the text shown may be describing a life/situation completely different. Aiming to show how personal memories can shape our understanding of places, connecting individual experiences with the physical world.</p>
+        <div class="about-main">
+            <h2>About</h2>
+            <p>The project explores how to turn non-spatial data—memories and written stories—into spatial maps. This approach reveals patterns within datasets that are traditionally viewed as purely textual. I am investigating how diaries, memoirs can reveal hidden insights about people and places when shown on a map. Memories are personal and often very fuzzy and blurry, but they hold details that shape our identities and our sense of place.</p>
+            <p>However, these narratives do not merely indicate physical locations; they also embed rich emotional and sensory experiences. By treating these memoirs as data, can extract valuable insights about how individuals relate to and experience space.</p>
+            <p>Inspired by the art game “exquisite corpse”. When clicking on each spot, the text shown may be describing a life/situation completely different. Aiming to show how personal memories can shape our understanding of places, connecting individual experiences with the physical world.</p>
+        </div>
+        <div class="about-methodology">
+            <h2>Methodology</h2>
+            <p>This project utilizes an integrated pipeline combining Natural Language Processing, GPT analysis, and Google Maps API to extract, geocode, and visualize location data extracted from memoirs. The process involves extracting text from EPUB files, using spaCy for entity recognition, refining the location information with GPT, and finally mapping the coordinates with sentiment analysis as a reflection of the emotional context.</p>
+        </div>
     </div>
 </body>
 </html>

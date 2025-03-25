@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     map.on('load', function () {
 
         // Fetch GeoJSON data and add markers
-        fetch("geojson_output/locations_henry-david-thoreau_walden.geojson")
+        fetch("geojson_output/locations_JackKerouac-On the Road(1976).geojson")
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok: " + response.statusText);
@@ -73,8 +73,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     const contexts = uniqueContexts.join("<hr>");
                     
                     // Highlight occurrences of the name in the context text
-                    const highlightedContexts = contexts.replace(new RegExp(properties[0].name, 'g'),
-                        '<span style="background-color: yellow; font-weight: bold;">' + properties[0].name + '</span>');
+                    const highlightedContexts = contexts.replace(new RegExp(properties[0].LocationName, 'g'),
+                        '<span style="background-color: yellow; font-weight: bold;">' + properties[0].LocationName + '</span>');
                     
                     const uniquePresences = [];
                     properties.forEach(prop => {
@@ -84,14 +84,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     });
                     const presences = uniquePresences.join("<hr>");
-                    const locations = properties.map(prop => prop.name || "name").join("<hr>");
+                    const locations = properties.map(prop => prop.LocationName || "LocationName").join("<hr>");
                     
                     let presence = properties[0].Presence || "Presence not specified";
 
                     // Create popup using highlightedContexts instead of contexts
                     const popup = new mapboxgl.Popup({ offset: 15, closeOnClick: false, anchor: 'left' }).setHTML(
                         `<div style="max-height: 500px; width: 700px; overflow-y: auto;">
-                            <h2 style="position: sticky; top: 0; background-color: white; z-index: 1;">${properties[0].name}</h2>
+                            <h2 style="position: sticky; top: 0; background-color: white; z-index: 1;">${properties[0].LocationName}</h2>
                             <p>${highlightedContexts || "No context available"}</p>
                         </div>`
                     );
