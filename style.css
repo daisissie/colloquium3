@@ -1,14 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Gendy+Modern+Sans:wght@400;700&display=swap');
+@font-face {
+    font-family: 'Gendy';
+    src: url('assets/Gendy.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 /* General body styling */
 body {
-    font-family: 'Gendy Modern Sans', sans-serif;
+    font-family: 'Gendy', 'Gendy Modern Sans', sans-serif;
     margin: 0;
     padding: 0;
     font-weight: 100;
     letter-spacing: 3px;
     height: 100%;
-    cursor: url('/assets/marker_logo-01.png') 0 0, auto;
+    cursor: url('/Users/daiyu/Documents/github_mac/colloquium3/assets/marker_logo-01.cur'), auto;
 }
 
 /* Make the map occupy the full viewport */
@@ -120,11 +125,13 @@ header {
     gap: 20px;
 }
 .about-main, 
+
 .about-methodology {
     flex: 1;
 }
 .about-methodology {
     background-color: #f5f5f5;
-    padding: 10px;
+    
+    padding: 50px;
     border-radius: 4px;
 }

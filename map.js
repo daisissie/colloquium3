@@ -57,6 +57,34 @@ document.addEventListener('DOMContentLoaded', function() {
                     padding: 50 // Add some padding around the markers
                 });
                 
+                // Initialize drawn line coordinates and add source & layer for the line
+                const drawnLineCoords = [];
+                let lineData = {
+                    type: 'Feature',
+                    properties: {},
+                    geometry: {
+                        type: 'LineString',
+                        coordinates: drawnLineCoords
+                    }
+                };
+                map.addSource('route', {
+                    type: 'geojson',
+                    data: lineData
+                });
+                map.addLayer({
+                    id: 'route',
+                    type: 'line',
+                    source: 'route',
+                    layout: {
+                        'line-join': 'round',
+                        'line-cap': 'round'
+                    },
+                    paint: {
+                        'line-color': '#888',
+                        'line-width': 0.25
+                    }
+                });
+
                 // Animate markers one at a time and zoom into each location
                 function animateMarkers(index) {
                     if (index >= featureArray.length) return;
@@ -105,6 +133,18 @@ document.addEventListener('DOMContentLoaded', function() {
                         .setLngLat(coordinates)
                         .addTo(map);
                     
+                    // Show popup immediately as marker appears
+                    if (currentPopup) {
+                        currentPopup.remove();
+                    }
+                    popup.setLngLat(coordinates);
+                    popup.addTo(map);
+                    currentPopup = popup;
+                    
+                    // Update line drawing as marker appears
+                    drawnLineCoords.push(coordinates);
+                    map.getSource('route').setData(lineData);
+                    
                     // Replace previous event listeners for popup:
                     let hoverTimer;
                     el.addEventListener('mouseenter', () => {
@@ -116,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             popup.setLngLat(coordinates);
                             popup.addTo(map);
                             currentPopup = popup; // Set the current popup
-                            map.panTo(coordinates, { duration: 500 }); // center the popup on the page
+                            map.panTo(coordinates, { duration: 1000 }); // increased duration for smoother panning
                         }, 0);
                     });
                     el.addEventListener('mouseleave', () => {
@@ -132,8 +172,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         el.style.height = '100px';
                         map.flyTo({
                             center: coordinates,
-                            zoom: 15,
-                            speed: 0.8
+                            zoom: 12,      // reduced zoom level for less drastic zoom in
+                            speed: 0.5,    // slower animation speed
+                            easing: t => t // linear easing for smoother movement
                         });
                         // Revert marker size after zoom animation completes
                         map.once('moveend', () => {
@@ -146,55 +187,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     setTimeout(() => animateMarkers(index + 1), 1500);
                 }
                 animateMarkers(0);
-
-                // Prepare line data
-                const lineCoordinates = featureArray.map(feature => feature.coordinates);
-                let lineData = {
-                    type: 'Feature',
-                    properties: {},
-                    geometry: {
-                        type: 'LineString',
-                        coordinates: []
-                    }
-                };
-
-                // Add source and layer for the line
-                map.addSource('route', {
-                    type: 'geojson',
-                    data: lineData
-                });
-
-                map.addLayer({
-                    id: 'route',
-                    type: 'line',
-                    source: 'route',
-                    layout: {
-                        'line-join': 'round',
-                        'line-cap': 'round'
-                    },
-                    paint: {
-                        'line-color': '#888',
-                        'line-width': 0.25
-                    }
-                });
-
-                // Animate the line drawing
-                let i = 0;
-                function animateLine() {
-                    // Check if the map is zoomed out enough
-                    if (map.getZoom() < 5) { // Adjust the zoom level as needed
-                        if (i < lineCoordinates.length) {
-                            lineData.geometry.coordinates = lineCoordinates.slice(0, i + 1);
-                            map.getSource('route').setData(lineData);
-                            i++;
-                            setTimeout(animateLine, 100); // Adjust the timeout for animation speed
-                        }
-                    } else {
-                        // If not zoomed out enough, wait and check again
-                        setTimeout(animateLine, 1000); // Check every 1 second
-                    }
-                }
-                animateLine();
             })
             .catch(error => console.error("Error loading GeoJSON:", error));
     });
